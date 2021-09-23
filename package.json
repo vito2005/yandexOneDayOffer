@@ -1,0 +1,19 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "one day offer exercises",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "onedayoffer",
+    "one day offer",
+    "yandex.ru"
+  ],
+  "author": "alexbuki",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
+}
