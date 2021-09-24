@@ -13,7 +13,7 @@ module.exports = function (input) {
     ...aliases,
     '.': absoluteRepoPath,
   }
-  const changedModules = new Map()
+  const modulesMap = new Map()
 
   function pathToAbsolutePath(path, aliases = {}) {
     for (a in aliases) {
@@ -29,11 +29,11 @@ module.exports = function (input) {
 
     const children = module.deps.map((d) => {
       let dpath = pathToAbsolutePath(d, allAliases)
-      changedModules.set(dpath, { parent: path })
+      modulesMap.set(dpath, { parent: path })
       return dpath
     })
 
-    changedModules.set(path, { deps: children, hasChanged: module.hasChanged })
+    modulesMap.set(path, { deps: children, hasChanged: module.hasChanged })
   })
 
   specs.forEach((spec) => {
@@ -41,7 +41,7 @@ module.exports = function (input) {
 
     spec.deps.forEach((m) => {
       const absM = pathToAbsolutePath(m, allAliases)
-      const module = changedModules.get(absM) || {}
+      const module = modulesMap.get(absM) || {}
 
       if (module.hasChanged) {
         result.add(path)
@@ -49,7 +49,7 @@ module.exports = function (input) {
 
       module.deps &&
         module.deps.forEach((d) => {
-          const dModule = changedModules.get(d) || {}
+          const dModule = modulesMap.get(d) || {}
 
           if (dModule.hasChanged) {
             result.add(path)

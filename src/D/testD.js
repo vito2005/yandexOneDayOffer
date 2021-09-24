@@ -29,21 +29,12 @@ const input = {
       deps: [],
       hasChanged: true,
     },
-    {
-      file: '@/pages/1/d.js',
-      deps: [],
-      hasChanged: true,
-    },
   ],
   specs: [
     // информация о тестах
     {
       file: './src/specs/1.js',
       deps: ['/var/www/projects/project1/src/pages/a.js'],
-    },
-    {
-      file: './src/specs/2.js',
-      deps: ['/var/www/projects/project1/src/pages/1/d.js'],
     },
   ],
 }
